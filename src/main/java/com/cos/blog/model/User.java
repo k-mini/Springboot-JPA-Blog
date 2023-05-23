@@ -1,6 +1,6 @@
 package com.cos.blog.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,6 +46,6 @@ public class User {
 	private String oauth; // kakao, goolgle
 	
 	@CreationTimestamp // 시간이 자동 입력
-	private Timestamp createDate;
+	private LocalDateTime createDate;
 
 }

@@ -1,8 +1,9 @@
 package com.cos.blog.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,9 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @NoArgsConstructor
@@ -49,13 +47,13 @@ public class Board {
 	@JoinColumn(name="userId")
 	private User user; // DB는 오브젝트를 저장할 수 없다. => FK 사용 . 그러나 자바는 오브젝트를 저장할 수 있다.
 	
-	@OneToMany(mappedBy= "board", fetch = FetchType.EAGER) // board는필드이름. mappedBy 연관관계의 주인이 아니다. (난 FK가 아니에요) => DB에 컬럼을 만들지 마세요.
+	@OneToMany(mappedBy= "board", fetch = FetchType.EAGER,cascade=CascadeType.REMOVE) // board는필드이름. mappedBy 연관관계의 주인이 아니다. (난 FK가 아니에요) => DB에 컬럼을 만들지 마세요.
 	@JsonIgnoreProperties({"board"})
 	@OrderBy("id desc")
 	private List<Reply> replys;
 	
 	@CreationTimestamp
-	private Timestamp createDate;
+	private LocalDateTime createDate;
 }
 
 

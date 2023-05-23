@@ -1,7 +1,7 @@
 package com.cos.blog.model;
 
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,9 +16,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Builder
 @AllArgsConstructor
@@ -43,7 +41,7 @@ public class Reply {
 	private User user;
 	
 	@CreationTimestamp
-	private Timestamp createDate;
+	private LocalDateTime createDate;
 }
 
 
